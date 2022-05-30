@@ -1,20 +1,38 @@
 <template>
   <ul>
-    <li>
-      <a href="/message1">message001</a>&nbsp;&nbsp;
+    <li :style="{opacity}">
+      我是tdawg
     </li>
     <li>
-      <a href="/message2">message002</a>&nbsp;&nbsp;
+      message001 <input type="text">
     </li>
     <li>
-      <a href="/message/3">message003</a>&nbsp;&nbsp;
+     message002 <input type="text">
+    </li>
+    <li>
+      message003 <input type="text">&nbsp;
     </li>
   </ul>
 </template>
 
 <script>
 export default {
-  name: "Message"
+  name: "Message",
+  data() {
+    return {
+      opacity: 1
+    }
+  },
+  activated() {
+    this.timer = setInterval(() => {
+      console.log('11');
+      this.opacity -= 0.01
+      if(this.opacity <= 0) this.opacity = 1
+    },16)
+  },
+  deactivated() {
+    clearInterval(this.timer)
+  }
 }
 </script>
 

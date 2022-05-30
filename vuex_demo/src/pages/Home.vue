@@ -14,7 +14,9 @@
           </li>
         </ul>
         <div>
-          <router-view></router-view>
+          <keep-alive include="Message">
+            <router-view></router-view>
+          </keep-alive>
         </div>
       </div>
     </div>

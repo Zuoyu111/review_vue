@@ -5,32 +5,32 @@
 
 <!--        query 方式传递参数 -->
 <!--        <router-link :to='`/home/news/detail?id=${item.id}&&title=${item.title}`'>{{ item.title }}</router-link>-->
-<!--        <router-link :to="{-->
-<!--          path: '/home/news/detail',-->
-<!--          query: {-->
-<!--            id: item.id,-->
-<!--            title: item.title-->
-<!--          }-->
-<!--        }">-->
-<!--        {{ item.title }}-->
-<!--        </router-link>        -->
+        <router-link :to="{
+          path: '/home/news/detail',
+          query: {
+            id: item.id,
+            title: item.title
+          }
+        }">
+        {{ item.title }}
+        </router-link>
 
 <!--        params方式传递参数 -->
 <!--        <router-link-->
 <!--            :to="`/home/news/detail/${item.id}/${item.title}`">-->
 <!--          {{ item.title }}-->
 <!--        </router-link>-->
-      <router-link :to="{
-        name: 'news_detail',  //当使用params传递参数时  用对象写法的使用 必须使用name 不能用path
-        params: {
-          id: item.id,
-          title: item.title
-        }
-      }">
-        {{ item.title }}
-      </router-link>
-
-
+<!--      <router-link :to="{-->
+<!--        name: 'news_detail',  //当使用params传递参数时  用对象写法的使用 必须使用name 不能用path-->
+<!--        params: {-->
+<!--          id: item.id,-->
+<!--          title: item.title-->
+<!--        }-->
+<!--      }">-->
+<!--        {{ item.title }}-->
+<!--      </router-link>-->
+        <button @click="pushShow(item)">push</button>
+        <button @click="replace(item)">replace</button>
       </li>
     </ul>
     <hr>
@@ -48,6 +48,28 @@ export default {
         {id: '002',title: '新闻2'},
         {id: '003',title: '新闻3'}
       ]
+    }
+  },
+  methods: {
+    pushShow(item) {
+      this.$router.push({
+        path: '/home/news/detail',
+        // name: 'news_detail',
+        query: {
+          id: item.id,
+          title: item.title
+        }
+      })
+    },
+    replace(item) {
+      this.$router.replace({
+        path: '/home/news/detail',
+        // name: 'news_detail',
+        query: {
+          id: item.id,
+          title: item.title
+        }
+      })
     }
   }
 }
